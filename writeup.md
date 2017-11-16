@@ -36,9 +36,9 @@ The following figure depicts the arquitecture of the fully convolutional network
 
 ![alt text][image1]
 
-The inputs layer represents the input to the system. The block1 layer is the result of applying a 3x3 convolution with same padding, a stride of 2x2, which reduces the size of the output to a half with respect to the input, and relu activation. The depth of the output is increased to 32 channels. This output is batch-normalized.
+The inputs layer represents the input to the system. The block1 layer is the result of applying a 3x3 convolution with same padding, a stride of 2x2, which reduces the size of the output to a half with respect to the input, and relu activation. The depth of the output is increased to 32 filters. This output is batch-normalized.
 
-In a like manner, the block2 and block3 are obtained from 3x3 convolutions with same padding, stride of 2x2, and relu activation. But the depth of block2 and block3 are set to 64 channels and 128 channels, respectively.
+In a like manner, the block2 and block3 are obtained from 3x3 convolutions with same padding, stride of 2x2, and relu activation. But the depth of block2 and block3 are set to 64 filters and 128 filters, respectively.
 
 The stride of 2x2 implies that block2 width and height have half the width and height of block1, and that block3 width and height have half the width and height of block2.
 
@@ -48,9 +48,39 @@ conv_layer is the result of applying a 1x1 convolution with same padding and a s
 
 The conv_layer is bilinearly up-sampled to twice its size to obtain the up-sampled4 layer. This one in turn is concatenated to the block2 layer in order to produce a skip-connection.
 
-A 3x3 separable convolution with same padding, a stride of 1x1 and a rule activation is applied to the skip-connection, and the result is batch normalized. Then this output is applied again an exactly equal process, to obtain the block4 layer.
+A 3x3 separable convolution with same padding, a stride of 1x1, a rule activation, and depth of 128 filters is applied to the skip-connection, and the result is batch normalized. Then this output is applied again an exactly equal process, to obtain the block4 layer.
 
-In the same manner, the block4/5 layer is applied the same set of convolutions and skip-connection as the ones used in the conv_layer to obtain the block4 layer, but in this case the layer obtained is the block5/x.
+In the same manner, the block4/5 layer is also up-sampled, convoluted and concatenated exactly in the same way as in the case of the conv_layer, but in this case the layer obtained is the block5/x. The difference is that the depth of block5 and x are 64 and 32 filters, respectively.
 
-Finally, the x layer is applied a 3x3 convolution with same padding, a stride of 1x1 and softmax activation, and this result is batch normalized.
+Finally, the x layer is applied a 3x3 convolution with same padding, a stride of 1x1 and softmax activation, and this result is batch normalized. The depth of this final resultant layer is defined by the parameter num_classes, which is set to 3 for this project.
 
+#### Code
+
+The code as follows shows the implementation of the FCN in python.
+
+```python
+def fcn_model(inputs, num_classes):
+    
+    # TODO Add Encoder Blocks. 
+    # Remember that with each encoder layer, the depth of your model (the number of filters) increases.
+    block1 = encoder_block(inputs, filters=32, strides=2)
+    block2 = encoder_block(block1, filters=64, strides=2)
+    block3 = encoder_block(block2, filters=128, strides=2)
+
+    # TODO Add 1x1 Convolution layer using conv2d_batchnorm().
+    conv_layer = conv2d_batchnorm(block3, filters=64, kernel_size=1, strides=1)
+    
+    # TODO: Add the same number of Decoder Blocks as the number of Encoder Blocks
+    block4 = decoder_block(conv_layer, block2, filters=128)
+    block5 = decoder_block(block4, block1, filters=64)
+    x = decoder_block(block5, inputs, filters=32)
+    
+    # The function returns the output layer of your model. "x" is the final layer obtained from the last decoder_block()
+    #return layers.Conv2D(num_classes, 1, activation='softmax', padding='same')(x)
+    return layers.Conv2D(num_classes, 3, activation='softmax', padding='same')(x)
+
+```
+
+### Training
+
+#### Hyperparameters
