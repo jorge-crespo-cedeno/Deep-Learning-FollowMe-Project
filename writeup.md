@@ -56,7 +56,7 @@ Finally, the x layer is applied a 3x3 convolution with same padding, a stride of
 
 #### Code
 
-The FCN architural model is implemented in python, in the fcn_model function shown as follows:
+The FCN architural model is implemented in python, in the ```fcn_model``` function shown as follows:
 
 ```python
 def fcn_model(inputs, num_classes):
@@ -81,7 +81,7 @@ def fcn_model(inputs, num_classes):
 
 ```
 
-The variable names are exactly the ones used in the aforementioned description, so that the reader can understand the code by referring to the previous text. The implementation of the functions ```python encoder_block``` and decoder_block are as follows:
+The variable names are exactly the ones used in the aforementioned description, so that the reader can understand the code by referring to the previous text. The implementation of the functions ```encoder_block``` and ```decoder_block``` are as follows:
 
 ```python
 def encoder_block(input_layer, filters, strides):
@@ -90,7 +90,9 @@ def encoder_block(input_layer, filters, strides):
     output_layer = separable_conv2d_batchnorm(input_layer, filters, strides)
     
     return output_layer
+```
 
+```python
 def decoder_block(small_ip_layer, large_ip_layer, filters):
     
     # TODO Upsample the small input layer using the bilinear_upsample() function.
