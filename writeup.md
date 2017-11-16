@@ -61,22 +61,21 @@ The FCN architural model is implemented in python, in the ```fcn_model``` functi
 ```python
 def fcn_model(inputs, num_classes):
     
-    # TODO Add Encoder Blocks. 
+    # Add Encoder Blocks. 
     # Remember that with each encoder layer, the depth of your model (the number of filters) increases.
     block1 = encoder_block(inputs, filters=32, strides=2)
     block2 = encoder_block(block1, filters=64, strides=2)
     block3 = encoder_block(block2, filters=128, strides=2)
 
-    # TODO Add 1x1 Convolution layer using conv2d_batchnorm().
+    # Add 1x1 Convolution layer using conv2d_batchnorm().
     conv_layer = conv2d_batchnorm(block3, filters=64, kernel_size=1, strides=1)
     
-    # TODO: Add the same number of Decoder Blocks as the number of Encoder Blocks
+    # Add the same number of Decoder Blocks as the number of Encoder Blocks
     block4 = decoder_block(conv_layer, block2, filters=128)
     block5 = decoder_block(block4, block1, filters=64)
     x = decoder_block(block5, inputs, filters=32)
     
     # The function returns the output layer of your model. "x" is the final layer obtained from the last decoder_block()
-    #return layers.Conv2D(num_classes, 1, activation='softmax', padding='same')(x)
     return layers.Conv2D(num_classes, 3, activation='softmax', padding='same')(x)
 
 ```
@@ -86,7 +85,7 @@ The variable names are exactly the ones used in the aforementioned description, 
 ```python
 def encoder_block(input_layer, filters, strides):
     
-    # TODO Create a separable convolution layer using the separable_conv2d_batchnorm() function.
+    # Create a separable convolution layer using the separable_conv2d_batchnorm() function.
     output_layer = separable_conv2d_batchnorm(input_layer, filters, strides)
     
     return output_layer
@@ -95,13 +94,13 @@ def encoder_block(input_layer, filters, strides):
 ```python
 def decoder_block(small_ip_layer, large_ip_layer, filters):
     
-    # TODO Upsample the small input layer using the bilinear_upsample() function.
+    # Upsample the small input layer using the bilinear_upsample() function.
     output_layer = bilinear_upsample(small_ip_layer)
     
-    # TODO Concatenate the upsampled and large input layers using layers.concatenate
+    # Concatenate the upsampled and large input layers using layers.concatenate
     output_layer = layers.concatenate([output_layer, large_ip_layer])
     
-    # TODO Add some number of separable convolution layers
+    # Add some number of separable convolution layers
     output_layer = separable_conv2d_batchnorm(output_layer, filters)
     output_layer = separable_conv2d_batchnorm(output_layer, filters)
     
@@ -134,7 +133,7 @@ def bilinear_upsample(input_layer):
     return output_layer
 ```
 
-The implementation of the ```SeparableConv2DKeras``` and ```BilinearUpSampling2D``` classes can be found in the utils/separable_conv2d.py file. ```layers``` can be imported from ```from tensorflow.contrib.keras.python.keras```.
+The implementation of the ```SeparableConv2DKeras``` and ```BilinearUpSampling2D``` classes can be found in the utils/separable_conv2d.py file. ```layers``` can be imported from ```tensorflow.contrib.keras.python.keras```.
 
 ### Training
 
