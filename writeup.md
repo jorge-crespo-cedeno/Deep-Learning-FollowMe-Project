@@ -30,7 +30,7 @@ Finally, a pair of convolution layers are added to the end of the transposed con
 
 [//]: # (Image References)
 
-[image1]: ./misc_images/robond-kinematics.jpg
+[image1]: ./misc_images/FCN.png
 
 The following figure depicts the arquitecture of the fully convolutional network used:
 
