@@ -18,7 +18,7 @@ In the case of this project, the target to be identified has enough complexity, 
 
 Each of the outputs of these first three convolution layers is normalized, in order to avoid introducing errors when values of very different magnitudes are operated, e.g., a very big value plus a tiny small value. Additionally, convergence is quicker using normalized values.
 
-The output of the third convolution layer is fed to a 1x1 convolution layer, i.e., one that has a 1x1 kernel. The purpose of this is to avoid losing dimensional information.
+The output of the third convolution layer is fed to a 1x1 convolution layer, i.e., one that has a 1x1 kernel. The purpose of this is to avoid losing dimensional information, as it happens when using a fully connected layer, which reduces dimensionality to 2D. Using a 1x1 convolution, the dimensionality is not lost, and the number of filters can be set to a specified value (64 in this project).
 
 The output of the 1x1 convolution layer is up-sampled until the size of the original input images is obtained. The purpose of up-sampling is to be able to do pixel-wise classification. In order to obtain the original size, the same number of convolution layers (three) are added to the network after the 1x1 convolution layer. These three up-sampling layers are called transposed convolution layers, because they reverse the convolution operation performed in the first three layers.
 
@@ -138,3 +138,19 @@ The implementation of the ```SeparableConv2DKeras``` and ```BilinearUpSampling2D
 ### Training
 
 #### Hyperparameters
+
+The neural networks need a set of parameters to be able to learn the weights and biases. These parameters are called hiperparameters, because the neural network uses them to learn another parameters, i.e., the weights and biases.
+
+The learning rate is set to a small value, 0.01. The number of epochs is 10, which indicates that the network is trained 10 times on the training set. The steps per epoch, which indicates the number of batches of training images used in 1 epoch, is set to 200. The batch size is set to 64. Although it is recommended to keep the constraint of steps per epoch equal to the training set size divided by the batch size, it was found that a batch size of around 64 provided the required 0.4 score, so there was no need to reduce the batch size to a value of approximately 20.
+
+```python
+learning_rate = 0.01
+batch_size = 64
+num_epochs = 10
+steps_per_epoch = 200
+validation_steps = 50
+workers = 2
+```
+
+Validation steps indicates that 50 batches of validation images are used per epoch. Workers is set to two, indicating the number of processes used during training. The provided default value is kept, since the network is trained using the Amazon Web Services.
+
