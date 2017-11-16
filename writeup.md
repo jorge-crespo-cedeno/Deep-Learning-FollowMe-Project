@@ -52,7 +52,7 @@ A 3x3 separable convolution with same padding, a stride of 1x1, a rule activatio
 
 In the same manner, the block4/5 layer is also up-sampled, convoluted and concatenated exactly in the same way as in the case of the conv_layer, but in this case the layer obtained is the block5/x. The difference is that the depth of block5 and x are 64 and 32 filters, respectively.
 
-Finally, the x layer is applied a 3x3 convolution with same padding, a stride of 1x1 and softmax activation, and this result is batch normalized. The depth of this final resultant layer is defined by the parameter num_classes, which is set to 3 for this project.
+Finally, the x layer is applied a 3x3 convolution with same padding, a stride of 1x1 and softmax activation. The depth of this final resultant layer is defined by the parameter num_classes, which is set to 3 for this project.
 
 #### Code
 
@@ -107,6 +107,34 @@ def decoder_block(small_ip_layer, large_ip_layer, filters):
     
     return output_layer
 ```
+
+Finally, the ```conv2d_batchnorm```, ```separable_conv2d_batchnorm``` and ```bilinear_upsample``` are as follows:
+
+```python
+def separable_conv2d_batchnorm(input_layer, filters, strides=1):
+    output_layer = SeparableConv2DKeras(filters=filters,kernel_size=3, strides=strides,
+                             padding='same', activation='relu')(input_layer)
+    
+    output_layer = layers.BatchNormalization()(output_layer) 
+    return output_layer
+```
+
+```python
+def conv2d_batchnorm(input_layer, filters, kernel_size=3, strides=1):
+    output_layer = layers.Conv2D(filters=filters, kernel_size=kernel_size, strides=strides, 
+                      padding='same', activation='relu')(input_layer)
+    
+    output_layer = layers.BatchNormalization()(output_layer) 
+    return output_layer
+```
+
+```python
+def bilinear_upsample(input_layer):
+    output_layer = BilinearUpSampling2D((2,2))(input_layer)
+    return output_layer
+```
+
+The implementation of the ```SeparableConv2DKeras``` and ```BilinearUpSampling2D``` classes can be found in the utils/separable_conv2d.py file. ```layers``` can be imported from ```from tensorflow.contrib.keras.python.keras```.
 
 ### Training
 
