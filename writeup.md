@@ -31,6 +31,7 @@ Finally, a pair of convolution layers are added to the end of the transposed con
 [//]: # (Image References)
 
 [image1]: ./misc_images/FCN.png
+[image2]: ./misc_images/training_epoch10.png
 
 The following figure depicts the arquitecture of the fully convolutional network used:
 
@@ -135,13 +136,11 @@ def bilinear_upsample(input_layer):
 
 The implementation of the ```SeparableConv2DKeras``` and ```BilinearUpSampling2D``` classes can be found in the utils/separable_conv2d.py file. ```layers``` can be imported from ```tensorflow.contrib.keras.python.keras```.
 
-### Training
-
-#### Hyperparameters
+### Hyperparameters
 
 The neural networks need a set of parameters to be able to learn the weights and biases. These parameters are called hiperparameters, because the neural network uses them to learn another parameters, i.e., the weights and biases.
 
-The learning rate is set to a small value, 0.01. The number of epochs is 10, which indicates that the network is trained 10 times on the training set. The steps per epoch, which indicates the number of batches of training images used in 1 epoch, is set to 200. The batch size is set to 64. Although it is recommended to keep the constraint of steps per epoch equal to the training set size divided by the batch size, it was found that a batch size of around 64 provided the required 0.4 score, so there was no need to reduce the batch size to a value of approximately 20.
+The learning rate is set to a small value, 0.01, to increase the chances of convergence. The number of epochs is 10, which indicates that the network is trained 10 times on the training set. ```steps_per_epoch```, which indicates the number of batches of training images used in 1 epoch, is set to 200. Although it is recommended to keep the constraint of steps per epoch equal to the training set size divided by the batch size, it was found that a ```batch_size``` of 64 provided the required 0.4 score, so there was no need to reduce it to a value of approximately 20.
 
 ```python
 learning_rate = 0.01
@@ -152,5 +151,14 @@ validation_steps = 50
 workers = 2
 ```
 
-Validation steps indicates that 50 batches of validation images are used per epoch. Workers is set to two, indicating the number of processes used during training. The provided default value is kept, since the network is trained using the Amazon Web Services.
+```validation_steps``` indicates that 50 batches of validation images are used per epoch. Workers is set to two, indicating the number of processes used during training. The provided default value is kept, since the network is trained using the Amazon Web Services.
+
+### Training
+
+Using the hyperparameters specified above, the deep neural network is trained. The training curves plotting loss vs epoch for both, training and validation, is shown in the following image:
+
+![alt text][image2]
+
+### Prediction
+
 
