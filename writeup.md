@@ -33,7 +33,7 @@ Finally, a pair of convolution layers are added to the end of the transposed con
 [image1]: ./misc_images/FCN.png
 [image2]: ./misc_images/training_epoch10.png
 [image3]: ./data/sample_evaluation_data/following_images/images/0_run1cam1_00016.jpeg
-[image4]: ./data/runs/following_images_run_1/0_run1cam1_00016_prediction.jpeg
+[image4]: ./data/runs/following_images_run_1/0_run1cam1_00016_prediction.png
 
 The following figure depicts the arquitecture of the fully convolutional network used:
 
@@ -175,10 +175,8 @@ For this first case:
 * The number of false positives, i.e., when an object that is not the target is identified as the target, is 0.
 * The number of false negatives, i.e., when the target is not identified as the target, is 2.
 
-Original Image
-![][image3]
-
-DNN Prediction
-![][image4]
+Original Image | DNN Prediction
+--- | ---
+![][image3] | ![][image4]
 
 ![original image](./data/sample_evaluation_data/following_images/images/0_run1cam1_00016.jpeg "Original Image")  ![alt text](./data/runs/following_images_run_1/0_run1cam1_00016_prediction.jpeg)
