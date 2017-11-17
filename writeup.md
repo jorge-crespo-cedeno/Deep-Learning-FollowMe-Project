@@ -43,6 +43,8 @@ Finally, a pair of convolution layers are added to the end of the transposed con
 [image11]: ./data/sample_evaluation_data/patrol_with_targ/images/6_run5cam1_00004.jpeg
 [image12]: ./data/sample_evaluation_data/patrol_with_targ/masks/6__mask_00004.png
 [image13]: ./data/runs/patrol_with_targ_run_1/6_run5cam1_00004_prediction.png
+[image14]: ./data/sample_evaluation_data/patrol_with_targ/images/6_run5cam1_00407.jpeg
+[image15]: ./data/runs/patrol_with_targ_run_1/6_run5cam1_00407_prediction.png
 
 The following figure depicts the arquitecture of the fully convolutional network used:
 
@@ -255,4 +257,16 @@ print(final_score)
 
 ### Future Enhancements
 
+From observations to the generated predictions, it can be noted that the majority of errors are produced when either the target is too far, or when the lighting conditions are such that the colors of the target appear darker, or by a combination of both.
 
+When the target is too far, a tiny amount of pixels in the original image are occupied by the target. The neural network then has a hard time associating that little amout of pixels to the target.
+
+An example of how the ligthing conditions darken the target colors is shown as follows:
+
+Original Image | DNN Prediction
+--- | --- | ---
+![][image14] | ![][image15] 
+
+In this case, the lighting conditions make the lower part of the target appear full almost black, while normally the lower part is a combined pattern of red and black. Hence, the neural network is learning to recognize such pattern, and when that pattern is not perceivable anymore, due to different lighting conditions, the recognition fails. On the other hand, the upper part of the target is recognized, since the lighting conditions did not affect its colors in a significant amount.
+
+To solve this issue, we can 
