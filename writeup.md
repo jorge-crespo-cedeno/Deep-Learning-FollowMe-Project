@@ -34,6 +34,8 @@ Finally, a pair of convolution layers are added to the end of the transposed con
 [image2]: ./misc_images/training_epoch10.png
 [image3]: ./data/sample_evaluation_data/following_images/images/0_run1cam1_00016.jpeg
 [image4]: ./data/runs/following_images_run_1/0_run1cam1_00016_prediction.png
+[image5]: ./data/sample_evaluation_data/patrol_non_targ/images/2_run2cam1_02978.jpeg
+[image4]: ./data/runs/patrol_non_targ_run_1/2_run2cam1_02978_prediction.png
 
 The following figure depicts the arquitecture of the fully convolutional network used:
 
@@ -179,4 +181,15 @@ Original Image | DNN Prediction
 --- | ---
 ![][image3] | ![][image4]
 
-![original image](./data/sample_evaluation_data/following_images/images/0_run1cam1_00016.jpeg "Original Image")  ![alt text](./data/runs/following_images_run_1/0_run1cam1_00016_prediction.jpeg)
+#### Quadrotor in patrol mode captures images that do not contain the target
+
+For this first case:
+* The number of true positives, i.e., when the target is correctly identified, is 0. This is correct since the target does not appear in the images.
+* The number of false positives, i.e., when an object that is not the target is identified as the target, is 43. This represents a 16% of error. The total number of non target evaluation images is 270.
+* The number of false negatives, i.e., when the target is not identified as the target, is 0. This is correct as well since the target does not appear in the images.
+
+Original Image | DNN Prediction
+--- | ---
+![][image5] | ![][image6]
+
+
