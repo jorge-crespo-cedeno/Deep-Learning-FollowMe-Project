@@ -273,3 +273,5 @@ In this case, the lighting conditions make the lower part of the target appear f
 
 To solve this issue, we can apply a filter to remove illumination changes from the image before feeding it to the neural network. This illumination filters can be implemented as a neural network as well: B. Bascle, O. Bernier, V. Lemaire, “Learning invariants to illumination changes typical of indoor environments: application to image color correction,” in International Journal of Imaging Systems and Technology (IJIST), 17(3):132-142, John Wiley & Sons, Oct. 2007
 
+The model can be used to follow another object, such as a dog, cat, car, because the fully convolutional neural network will manage to extract the required features to characterize an object. The first layer can extract basic features, and the following layers can build upon them to characterize a complex object. The up-sampling and fully connected layers will be able to provide localization and classification information as well.
+
