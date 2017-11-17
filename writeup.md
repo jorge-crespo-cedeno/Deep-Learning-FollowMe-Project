@@ -35,7 +35,7 @@ Finally, a pair of convolution layers are added to the end of the transposed con
 [image3]: ./data/sample_evaluation_data/following_images/images/0_run1cam1_00016.jpeg
 [image4]: ./data/runs/following_images_run_1/0_run1cam1_00016_prediction.png
 [image5]: ./data/sample_evaluation_data/patrol_non_targ/images/2_run2cam1_02978.jpeg
-[image4]: ./data/runs/patrol_non_targ_run_1/2_run2cam1_02978_prediction.png
+[image6]: ./data/runs/patrol_non_targ_run_1/2_run2cam1_02978_prediction.png
 
 The following figure depicts the arquitecture of the fully convolutional network used:
 
