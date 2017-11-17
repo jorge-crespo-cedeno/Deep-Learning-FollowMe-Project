@@ -32,6 +32,8 @@ Finally, a pair of convolution layers are added to the end of the transposed con
 
 [image1]: ./misc_images/FCN.png
 [image2]: ./misc_images/training_epoch10.png
+[image3]: ./data/sample_evaluation_data/following_images/images/0_run1cam1_00016.jpeg
+[image4]: ./data/runs/following_images_run_1/0_run1cam1_00016_prediction.jpeg
 
 The following figure depicts the arquitecture of the fully convolutional network used:
 
@@ -159,6 +161,19 @@ Using the hyperparameters specified above, the deep neural network is trained. T
 
 ![alt text][image2]
 
-### Prediction
+### Evaluation
 
+Three cases are evaluated,
+1. When the quadrotor is following the target.
+2. When the quadrotor is in patrol mode and the captured images do not contain the target.
+3. When the quadrotor is in patrol mode and the captured images contain the target.
+
+#### Quadrotor is following the target
+
+For this first case:
+* The number of true positives, i.e., when the target is correctly identified, is 537.
+* The number of false positives, i.e., when an object that is not the target is identified as the target, is 0.
+* The number of false negatives, i.e., when the target is not identified as the target, is 2.
+
+![alt text][image3] ![alt text][image4]
 
