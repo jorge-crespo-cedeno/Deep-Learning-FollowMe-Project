@@ -175,5 +175,6 @@ For this first case:
 * The number of false positives, i.e., when an object that is not the target is identified as the target, is 0.
 * The number of false negatives, i.e., when the target is not identified as the target, is 2.
 
-![alt text][image3] ![alt text][image4]
+original image | prediction of DNN
+![alt text][image3] | ![alt text][image4]
 
