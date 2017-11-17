@@ -224,3 +224,35 @@ Original Image | Mask | DNN Prediction
 --- | --- | ---
 ![][image11] | ![][image12] | ![][image13] 
 
+#### Results
+
+The evaluation score is obtained from the overall Intersection Over Union -IoU- weighted by true positives. The overall IoU is calculated averaging the IoU of the first and third cases. The weight is calculated by weighting the true positives of all three cases over the true positives, false positives and false negatives of all three cases.
+
+```python
+# The IoU for the dataset that never includes the hero is excluded from grading
+final_IoU = (iou1 + iou3)/2
+print(final_IoU)
+```
+0.545356017342
+
+```python
+# Sum all the true positives, etc from the three datasets to get a weight for the score
+true_pos = true_pos1 + true_pos2 + true_pos3
+false_pos = false_pos1 + false_pos2 + false_pos3
+false_neg = false_neg1 + false_neg2 + false_neg3
+
+weight = true_pos/(true_pos+false_neg+false_pos)
+print(weight)
+```
+0.7437923250564334
+
+```python
+# And the final grade score is 
+final_score = final_IoU * weight
+print(final_score)
+```
+0.405631620122
+
+### Future Enhancements
+
+
