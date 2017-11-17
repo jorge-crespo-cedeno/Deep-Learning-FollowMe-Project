@@ -176,5 +176,6 @@ For this first case:
 * The number of false negatives, i.e., when the target is not identified as the target, is 2.
 
 original image | prediction of DNN
+- | -
 ![alt text][image3] | ![alt text][image4]
 
