@@ -259,9 +259,11 @@ print(final_score)
 
 From observations to the generated predictions, it can be noted that the majority of errors are produced when either the target is too far, or when the lighting conditions are such that the colors of the target appear darker, or by a combination of both.
 
-When the target is too far, a tiny amount of pixels in the original image are occupied by the target. The neural network then has a hard time associating that little amout of pixels to the target.
+When the target is too far, a tiny amount of pixels in the original image belong to the target. The neural network then has a hard time associating that little amout of pixels to the target, because the pattern and colors and shapes that identify the target are not visible in that small pixel amount. I personally think that this issue is hard to remove completely because of the little information that can be captured when the target is too far away. The same happens with humans, since when a person is too far away, it is difficult to be identified by others.
 
-An example of how the ligthing conditions darken the target colors is shown as follows:
+Something that could alleviate this problem is to characterize the target by its gait besides its color and shape patterns, so that the target can be recognized by the way it walks, although it can be very far away. This can be implemented by adding one more dimension to the neural network input data, so instead of convoluting with a kernel 3 dimensions (width, height, number of filters), a 4 dimensional kernel (width, height, image, number of filters) can be used in the convolution. Before, the kernel was a plane with only width and height, and the number of filters indicated the number of kernels. In this approach, a kernel is a box with width, height and image, and now number of filters indicates the number of boxes. The third dimension, image, is an image in the sequence of images that describe the gait of the target, such as it happens in a movie.
+
+Regarding the second problem, an example of how the ligthing conditions darken the target colors is shown as follows:
 
 Original Image | DNN Prediction
 --- | ---
@@ -269,4 +271,5 @@ Original Image | DNN Prediction
 
 In this case, the lighting conditions make the lower part of the target appear full almost black, while normally the lower part is a combined pattern of red and black. Hence, the neural network is learning to recognize such pattern, and when that pattern is not perceivable anymore, due to different lighting conditions, the recognition fails. On the other hand, the upper part of the target is recognized, since the lighting conditions did not affect its colors in a significant amount.
 
-To solve this issue, we can 
+To solve this issue, we can apply a filter to remove illumination changes from the image before feeding it to the neural network. This illumination filters can be implemented as a neural network as well: B. Bascle, O. Bernier, V. Lemaire, “Learning invariants to illumination changes typical of indoor environments: application to image color correction,” in International Journal of Imaging Systems and Technology (IJIST), 17(3):132-142, John Wiley & Sons, Oct. 2007
+
