@@ -179,3 +179,4 @@ original image | prediction of DNN
 --- | ---
 ![alt text][image3] | ![alt text][image4]
 
+![alt text](./data/sample_evaluation_data/following_images/images/0_run1cam1_00016.jpeg) ![alt text](./data/runs/following_images_run_1/0_run1cam1_00016_prediction.jpeg)
