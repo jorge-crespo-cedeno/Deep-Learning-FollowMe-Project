@@ -175,8 +175,10 @@ For this first case:
 * The number of false positives, i.e., when an object that is not the target is identified as the target, is 0.
 * The number of false negatives, i.e., when the target is not identified as the target, is 2.
 
-![][image3 "Original Image"]
+Original Image
+![][image3]
 
-![][image4 "DNN Precition"]
+DNN Prediction
+![][image4]
 
 ![original image](./data/sample_evaluation_data/following_images/images/0_run1cam1_00016.jpeg "Original Image")  ![alt text](./data/runs/following_images_run_1/0_run1cam1_00016_prediction.jpeg)
