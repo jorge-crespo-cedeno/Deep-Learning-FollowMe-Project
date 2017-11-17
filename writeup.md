@@ -264,7 +264,7 @@ When the target is too far, a tiny amount of pixels in the original image are oc
 An example of how the ligthing conditions darken the target colors is shown as follows:
 
 Original Image | DNN Prediction
---- | --- | ---
+--- | ---
 ![][image14] | ![][image15] 
 
 In this case, the lighting conditions make the lower part of the target appear full almost black, while normally the lower part is a combined pattern of red and black. Hence, the neural network is learning to recognize such pattern, and when that pattern is not perceivable anymore, due to different lighting conditions, the recognition fails. On the other hand, the upper part of the target is recognized, since the lighting conditions did not affect its colors in a significant amount.
