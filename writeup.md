@@ -36,6 +36,13 @@ Finally, a pair of convolution layers are added to the end of the transposed con
 [image4]: ./data/runs/following_images_run_1/0_run1cam1_00016_prediction.png
 [image5]: ./data/sample_evaluation_data/patrol_non_targ/images/2_run2cam1_02978.jpeg
 [image6]: ./data/runs/patrol_non_targ_run_1/2_run2cam1_02978_prediction.png
+[image7]: ./data/sample_evaluation_data/patrol_with_targ/images/2_run2cam1_03598.jpeg
+[image8]: ./data/runs/patrol_with_targ_run_1/2_run2cam1_03598_prediction.png
+[image9]: ./data/sample_evaluation_data/patrol_with_targ/images/4_run1cam1_02363.jpeg
+[image10]: ./data/runs/patrol_with_targ_run_1/4_run1cam1_02363_prediction.png
+[image11]: ./data/sample_evaluation_data/patrol_with_targ/images/6_run5cam1_00004.jpeg
+[image12]: ./data/sample_evaluation_data/patrol_with_targ/masks/6__mask_00004.png
+[image13]: ./data/runs/patrol_with_targ_run_1/6_run5cam1_00004_prediction.png
 
 The following figure depicts the arquitecture of the fully convolutional network used:
 
@@ -183,7 +190,7 @@ Original Image | DNN Prediction
 
 #### Quadrotor in patrol mode captures images that do not contain the target
 
-For this first case:
+For this second case:
 * The number of true positives, i.e., when the target is correctly identified, is 0. This is correct since the target does not appear in the images.
 * The number of false positives, i.e., when an object that is not the target is identified as the target, is 43. This represents a 16% of error. The total number of non target evaluation images is 270.
 * The number of false negatives, i.e., when the target is not identified as the target, is 0. This is correct as well since the target does not appear in the images.
@@ -192,4 +199,28 @@ Original Image | DNN Prediction
 --- | ---
 ![][image5] | ![][image6]
 
+#### Quadrotor in patrol mode captures images that contain the target
+
+For this third case:
+* The number of true positives, i.e., when the target is correctly identified, is 122.
+* The number of false positives, i.e., when an object that is not the target is identified as the target, is 3. This represents a 0.9% of error. The total number of non target evaluation images is 322.
+* The number of false negatives, i.e., when the target is not identified as the target, is 179. This represents an error of 55.6%.
+
+An example of a true positive:
+
+Original Image | DNN Prediction
+--- | ---
+![][image7] | ![][image8]
+
+An example of a false positive:
+
+Original Image | DNN Prediction
+--- | ---
+![][image9] | ![][image10]
+
+An example of a false negative:
+
+Original Image | Mask | DNN Prediction
+--- | --- | ---
+![][image11] | ![][image12] | ![][image13] 
 
