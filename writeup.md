@@ -32,19 +32,19 @@ Finally, a pair of convolution layers are added to the end of the transposed con
 
 [image1]: ./misc_images/FCN.png
 [image2]: ./misc_images/training_epoch10.png
-[image3]: ./data/sample_evaluation_data/following_images/images/0_run1cam1_00016.jpeg
-[image4]: ./data/runs/following_images_run_1/0_run1cam1_00016_prediction.png
-[image5]: ./data/sample_evaluation_data/patrol_non_targ/images/2_run2cam1_02978.jpeg
-[image6]: ./data/runs/patrol_non_targ_run_1/2_run2cam1_02978_prediction.png
-[image7]: ./data/sample_evaluation_data/patrol_with_targ/images/2_run2cam1_03598.jpeg
-[image8]: ./data/runs/patrol_with_targ_run_1/2_run2cam1_03598_prediction.png
-[image9]: ./data/sample_evaluation_data/patrol_with_targ/images/4_run1cam1_02363.jpeg
-[image10]: ./data/runs/patrol_with_targ_run_1/4_run1cam1_02363_prediction.png
-[image11]: ./data/sample_evaluation_data/patrol_with_targ/images/6_run5cam1_00004.jpeg
-[image12]: ./data/sample_evaluation_data/patrol_with_targ/masks/6__mask_00004.png
-[image13]: ./data/runs/patrol_with_targ_run_1/6_run5cam1_00004_prediction.png
-[image14]: ./data/sample_evaluation_data/patrol_with_targ/images/6_run5cam1_00407.jpeg
-[image15]: ./data/runs/patrol_with_targ_run_1/6_run5cam1_00407_prediction.png
+[image3]: ./misc_images/0_run1cam1_00016.jpeg
+[image4]: ./misc_images/0_run1cam1_00016_prediction.png
+[image5]: ./misc_images/2_run2cam1_02978.jpeg
+[image6]: ./misc_images/2_run2cam1_02978_prediction.png
+[image7]: ./misc_images/2_run2cam1_03598.jpeg
+[image8]: ./misc_images/2_run2cam1_03598_prediction.png
+[image9]: ./misc_images/4_run1cam1_02363.jpeg
+[image10]: ./misc_images/4_run1cam1_02363_prediction.png
+[image11]: ./misc_images/6_run5cam1_00004.jpeg
+[image12]: ./misc_images/6__mask_00004.png
+[image13]: ./misc_images/6_run5cam1_00004_prediction.png
+[image14]: ./misc_images/6_run5cam1_00407.jpeg
+[image15]: ./misc_images/6_run5cam1_00407_prediction.png
 
 The following figure depicts the arquitecture of the fully convolutional network used:
 
