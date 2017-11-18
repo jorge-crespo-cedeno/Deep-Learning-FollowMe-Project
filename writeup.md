@@ -39,6 +39,7 @@ Finally, a pair of convolution layers are added to the end of the transposed con
 [image7]: ./misc_images/2_run2cam1_03598.jpeg
 [image8]: ./misc_images/2_run2cam1_03598_prediction.png
 [image9]: ./misc_images/4_run1cam1_02363.jpeg
+[image9.1]: ./misc_images/4__mask_02363.png
 [image10]: ./misc_images/4_run1cam1_02363_prediction.png
 [image11]: ./misc_images/6_run5cam1_00004.jpeg
 [image12]: ./misc_images/6__mask_00004.png
@@ -216,9 +217,9 @@ Original Image | DNN Prediction
 
 An example of a false positive:
 
-Original Image | DNN Prediction
---- | ---
-![][image9] | ![][image10]
+Original Image | Mask | DNN Prediction
+--- | --- | ---
+![][image9] | ![][image9.1] | ![][image10]
 
 An example of a false negative:
 
