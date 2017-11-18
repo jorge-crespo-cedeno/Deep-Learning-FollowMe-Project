@@ -26,6 +26,10 @@ Additionally, a technique called skip connections is used in order to be able to
 
 Finally, a pair of convolution layers are added to the end of the transposed convolution layers with skip-connections, in order to extract some more spatial information.
 
+Although the convolution layers reduce the number of parameters to be learned in comparison to fully connected layers, still the number of parameters to be learned using the training set of images is computationally expensive.
+
+On a core i3 CPU @ 2.40 GHz x 4, it took me a little more than 2 hours per epoch, with an estimate of 22 hours for the complete training. Hence, I used Amazon Web Services, which speed up the process to approximately 30 minutes for the complete training.
+
 ### Architecture
 
 [//]: # (Image References)
